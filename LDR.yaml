@@ -1,0 +1,43 @@
+esphome:
+  name: ldr
+
+esp32:
+  board: esp32doit-devkit-v1
+  framework:
+    type: arduino
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  password: "hawktuah"
+
+ota:
+  - platform: esphome
+    password: "LDRSensor"
+  
+web_server:
+  port: 80
+
+sensor:
+  - platform: adc
+    pin: 34
+    name: "LDR Sensor"
+    unit_of_measurement: "Lux"
+    update_interval: 0.5s
+    accuracy_decimals: 2
+    attenuation: 11db
+    filters:
+      - lambda: return x * 1000; # Convert to Lux
+wifi:
+  ssid: "ermwhatthesigma"
+  password: "sergiuloh56"
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "ESP32 LDR"
+    password: "LDRSensor"
+
+captive_portal:
+    
