@@ -11,7 +11,7 @@ logger:
 
 # Enable Home Assistant API
 api:
-  password: "hawktuah"
+  password: "LDRSensor"
 
 ota:
   - platform: esphome
@@ -30,9 +30,10 @@ sensor:
     attenuation: 11db
     filters:
       - lambda: return x * 1000; # Convert to Lux
+
 wifi:
-  ssid: "ermwhatthesigma"
-  password: "sergiuloh56"
+  ssid: "StarNet - sandu.ina80"
+  password: "485754433587F6A7"
 
   # Enable fallback hotspot (captive portal) in case wifi connection fails
   ap:

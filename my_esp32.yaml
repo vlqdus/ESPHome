@@ -6,16 +6,16 @@ esp32:
   framework:
     type: arduino
 
-# Enable logging
-logger:
-
 # Enable Home Assistant API
 api:
-  password: "ss"
+  password: "vlqdus_mxs"
+# Enable logging
+logger:
+  baud_rate: 115200
 
 # Enable Web Server
 web_server:
-  port: 80  # Default HTTP port
+  port: 80  # Default port for HTTP
 
 # Enable OTA updates
 ota:
@@ -26,24 +26,66 @@ ota:
 switch:
   - platform: gpio
     pin: 2
-    name: "LED Control"
+    name: "OnBoard LED Switch"
     id: led_switch 
 
 output:
+
   - platform: ledc
     pin: 13
-    id: pwm_output
+    id: RedLeds
+
+  - platform: ledc
+    pin: 12
+    id: GreenLeds
+
+  - platform: ledc
+    pin: 14
+    id: BlueLeds
+
+  - platform: ledc
+    pin: 27
+    id: YellowLeds
+  
+  - platform: ledc
+    pin: 26
+    id: WhiteLeds
 
 light:
+
   - platform: monochromatic
-    output: pwm_output
-    name: "Custom LED Brightness"
+    output: RedLeds
+    name: "Red LEDs"
+    default_transition_length: 2s
+    
+  - platform: monochromatic
+    output: GreenLeds
+    name: "Green LEDs"
+    default_transition_length: 2s
+
+  - platform: monochromatic
+    output: BlueLeds
+    name: "Blue LEDs"
+    default_transition_length: 2s
+
+  - platform: monochromatic
+    output: YellowLeds
+    name: "Yellow LEDs"
+    default_transition_length: 2s
+
+  - platform: monochromatic
+    output: WhiteLeds
+    name: "White LEDs"
+    default_transition_length: 2s
+    
+
 
 # Wi-Fi Configuration
 wifi:
-  ssid: "beep0"
-  password: "48safandra"
+  ssid: "StarNet - sandu.ina80"
+  password: "485754433587F6A7"
 
+  # Assign a static IP address
   manual_ip:
     static_ip: 192.168.18.84  # Change this to fit your network
     gateway: 192.168.1.1       # Your router’s IP
@@ -52,7 +94,7 @@ wifi:
   # Enable fallback hotspot (captive portal) in case Wi-Fi fails
   ap:
     ssid: "ESP32 Failsafe AP"
-    password: "sergiuloh65"
+    password: "sergiuloh"
 
 # Enable Captive Portal
 captive_portal:
